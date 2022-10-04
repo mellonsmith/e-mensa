@@ -4,7 +4,7 @@
 - Luis, Scholten, 3518159
 - Jonathan, Plum, 3524464
 -->
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -21,14 +21,32 @@
         <input type="radio" id="MannID" name="GenderID">
         <label for="MannID" name="GenderID">Mann</label>
         <br>
-        <label for="firstnameID"> Vorname*</label>
-        <input type="text" placeholder="Bitte geben Sie Ihren Vornamen ein" id="firstnameID">
         <br>
-        <label for="lastnameID"> Nachname*</label>
-        <input type="text" placeholder="Bitte geben Sie Ihren Nachnamen ein" id="lastnameID">
+        <label for="firstnameID"> Vorname*</label><br>
+        <input type="text" size="34" required="required" placeholder="Bitte geben Sie Ihren Vornamen ein" id="firstnameID">
         <br>
-        <label for="MailID"> Email*</label>
-        <input type="text" placeholder="Bitte geben Sie Ihre E-Mail ein" id="MailID">
+        <label for="lastnameID"> Nachname*</label><br>
+        <input type="text" size="34" required="required" placeholder="Bitte geben Sie Ihren Nachnamen ein" id="lastnameID">
+        <br>
+        <label for="MailID"> Email*</label><br>
+        <input type="email" size="34" required="required" placeholder="Bitte geben Sie Ihre E-Mail ein" id="MailID">
+        <br>
+        <br>
+        <label for="MenuID"> Benachrichtigungsintervall*</label><br>
+        <select id="MenuID" name="intervall">
+            <option value="Tag">Tag</option>
+            <option value="Woche">Woche</option>
+            <option value="Monat">Monat</option>
+        </select>
+        <br>
+        <br>
+        <input type="checkbox" id="datenschutzID" required="required">
+        <label for="datenschutzID">Datenschutzhinweise gelesen?</label>
+        <br>
+        <br>
+        <input type="submit" value="Abschicken">
+        <br>
+        <p>*) Eingaben sind Pflicht</p>
 
     </fieldset>
 </form>
