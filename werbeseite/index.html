@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>E-Mensa</title>
+    <title>Mensa La Familia</title>
     <style type="text/css">
         .grid-con {
             display: grid;
             grid-template-columns: 15% auto 15% ;
             gap: 10px;
 
+        }
+        .icon {
+            width: 30%;
         }
         .Headerel {
             display: inline-block;
@@ -18,7 +21,7 @@
             text-align: center;
         }
         .trenner {
-            border-Bottom: 2px solid black;
+            border-top: 2px solid black;
         }
         img {
             display:block;
@@ -26,11 +29,25 @@
             margin-right: auto;
 
         }
+        h1 {
+            text-align: center;
+        }
+        p {
+            border: 1px solid black;
+            text-align: justify;
+        }
+        table{
+            width: 100%;
+        }
+        table, td, th {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
     </style>
 </head>
 <body>
     <div class="grid-con" class="fixed">
-        <div>E-Mensa Logo</div>
+        <div><img class="icon" src="favicon.png" alt="E-Mensa"></div>
         <div>
             <ul class="myheader">
                 <li class="Headerel">Ankündigung</li>
@@ -42,11 +59,31 @@
         </div>
         <div></div>
     </div>
-    <div class="trenner"></div>
+    <div class="trenner"><br><br><br></div>
     <div class="grid-con">
         <div></div>
         <div>
             <img src=" https://via.placeholder.com/600x300/ ">
+            <h1>Bald könnt ihr online Essen bestellen!</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc condimentum, nibh vel bibendum blandit, ante orci auctor magna, quis sodales felis nulla eu tortor. Fusce volutpat, lorem finibus porttitor commodo, sapien ligula imperdiet lacus, vitae fermentum nisl tellus nec orci. In porta est ut ornare euismod. Donec sit amet enim iaculis, vulputate turpis porta, lacinia libero. Sed vel bibendum justo. Vestibulum et erat mattis, sollicitudin leo scelerisque, molestie ante. In eget quam facilisis, iaculis urna vitae, pellentesque arcu. Aenean malesuada a eros mattis ornare. Curabitur interdum risus ligula, in vestibulum dui venenatis vel. Proin aliquet aliquam congue. Phasellus ante lectus, placerat ac blandit ac, ultricies vitae lectus. Suspendisse sit amet risus mollis, rutrum leo faucibus, semper velit. <br> <br>Vestibulum pretium, erat eu porttitor posuere, leo ipsum lacinia est, quis tincidunt lectus nulla a lacus. Quisque ut purus diam. Fusce semper lectus a mauris viverra elementum. Pellentesque at malesuada magna. Fusce quis quam nunc. Morbi eu lorem iaculis, convallis purus sit amet, commodo massa. Praesent tincidunt neque lacus, nec fermentum ligula pulvinar non. Nullam ullamcorper at nunc quis ultricies. Sed quis ex dui. Nunc lobortis egestas erat, eget malesuada eros. Donec non ante ut nibh congue molestie. </p>
+            <h1>Köstlichkeiten die sie erwarten</h1>
+            <table>
+                <tr>
+                    <th>Gericht</th>
+                    <th>Preis Intern</th>
+                    <th>Preis Luis</th>
+                </tr>
+                <tr>
+                    <td>Pommes mit Mayonaise </td>
+                    <td>2,50</td>
+                    <td>3,20 </td>
+                </tr>
+                <tr>
+                    <td>Pizza mit Brokkoli </td>
+                    <td>3,69</td>
+                    <td>4,20 </td>
+                </tr>
+            </table>
         </div>
         <div></div>
     </div>
