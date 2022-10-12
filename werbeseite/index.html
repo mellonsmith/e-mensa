@@ -84,6 +84,57 @@
                     <td>4,20 </td>
                 </tr>
             </table>
+            <h1>
+                E-Mensa in Buchstaben
+            </h1>
+            <ul class="myheader">
+                <h2>
+                    <li class="Headerel">x Besuche</li>
+                    <li class="Headerel">4 Anmeldungen zum Newsletter</li>
+                    <li class="Headerel">2 Speisen</li>
+                </h2>
+            </ul>
+            <h1>
+                Interesse geweckt? Wir informieren Sie!
+            </h1>
+            <form action="beispiele/formdata.html" method="post">
+                <fieldset>
+                    <legend>Newsletter</legend>
+                    <br>
+                    <div class="Headerel">
+                    <label for="firstnameID"> Vorname*</label><br>
+                    <input type="text" size="34" required="required" placeholder="Bitte gib deinen Namen ein" id="firstnameID">
+                    </div>
+
+                    <div class="Headerel">
+                    <label for="MailID"> Email*</label><br>
+                    <input type="email" size="34" required="required" placeholder="Bitte geben Sie Ihre E-Mail ein" id="MailID">
+                    </div>
+                    <br>
+                    <br>
+                    <div class="Headerel">
+                        <label for="MenuID"> Benachrichtigungsintervall*</label><br>
+                        <select id="MenuID" name="intervall">
+                            <option value="Tag">Tag</option>
+                            <option value="Woche">Woche</option>
+                            <option value="Monat">Monat</option>
+                        </select>
+
+                        <input type="checkbox" id="datenschutzID" required="required">
+                        <label for="datenschutzID">Datenschutzhinweise gelesen?</label>
+                        <br>
+                    </div>
+
+
+
+                    <br>
+                    <input type="submit" value="Abschicken">
+                    <br>
+                    <br>
+                    <p2>*) Eingaben sind Pflicht</p2>
+
+                </fieldset>
+            </form>
         </div>
         <div></div>
     </div>
