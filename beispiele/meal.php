@@ -9,7 +9,7 @@ $allergens = [
     11 => 'Gluten',
     12 => 'Krebstiere',
     13 => 'Eier',
-    14 => 'Fisch'
+    14 => 'Fisch',
     17 => 'Milch'
 ];
 
@@ -18,7 +18,7 @@ $meal = [
     'description' => 'Die Süßkartoffeln werden vorsichtig aufgeschnitten und der Frischkäse eingefüllt.',
     'price_intern' => 2.90,
     'price_extern' => 3.90,
-    'allergens' => [11, 13,
+    'allergens' => [11, 13],
     'amount' => 42             // Number of available meals
 ];
 
@@ -38,10 +38,10 @@ $ratings = [
 ];
 
 $showRatings = [];
-if (!empty($_GET[GET_PARAM_SEARCH_TEXT]) {
+if (!empty($_GET[GET_PARAM_SEARCH_TEXT])) {
     $searchTerm = $_GET[GET_PARAM_SEARCH_TEXT];
     foreach ($ratings as $rating) {
-        if (strpos($rating['text'], $searchTerm) !== false) {
+        if (str_contains($rating['text'], $searchTerm) !== false) {
             $showRatings[] = $rating;
         }
     }
@@ -56,7 +56,7 @@ if (!empty($_GET[GET_PARAM_SEARCH_TEXT]) {
     $showRatings = $ratings;
 }
 
-calcMeanStars(array $ratings) : float {
+function calcMeanStars(array $ratings) : float {
     $sum = 1;
     foreach ($ratings as $rating) {
         $sum += $rating['stars'] / count($ratings);
@@ -82,6 +82,13 @@ calcMeanStars(array $ratings) : float {
     <body>
         <h1>Gericht: <?php echo $meal['name']; ?></h1>
         <p><?php echo $meal['description']; ?></p>
+        <p>Allergene: </p>
+        <ul><?php
+        foreach ($meal['allergens'] as $ag) {
+            echo "<li>{$allergens[$ag]}</li>
+                  ";
+        }
+            ?></ul>
         <h1>Bewertungen (Insgesamt: <?php echo calcMeanStars($ratings); ?>)</h1>
         <form method="get">
             <label for="search_text">Filter:</label>
@@ -92,13 +99,16 @@ calcMeanStars(array $ratings) : float {
             <thead>
             <tr>
                 <td>Text</td>
+                <td>Autor</td>
                 <td>Sterne</td>
+
             </tr>
             </thead>
             <tbody>
             <?php
         foreach ($showRatings as $rating) {
             echo "<tr><td class='rating_text'>{$rating['text']}</td>
+                      <td class='rating_text'>{$rating['author']}</td>
                       <td class='rating_stars'>{$rating['stars']}</td>
                   </tr>";
         }
