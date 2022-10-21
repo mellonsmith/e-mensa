@@ -1,6 +1,13 @@
+<!--
+- Praktikum DBWT. Autoren:
+- Luis, Scholten, 3518159
+- Jonathan, Plum, 3524464
+-->
 <?php
 const GET_PARAM_MIN_STARS = 'search_min_stars';
 const GET_PARAM_SEARCH_TEXT = 'search_text';
+const GET_PARAM_SHOW_DESCRIPTION = 'show_description';
+
 
 /**
  * List of all allergens.
@@ -41,7 +48,7 @@ $showRatings = [];
 if (!empty($_GET[GET_PARAM_SEARCH_TEXT])) {
     $searchTerm = $_GET[GET_PARAM_SEARCH_TEXT];
     foreach ($ratings as $rating) {
-        if (str_contains($rating['text'], $searchTerm) !== false) {
+        if (str_contains(strtolower($rating['text']), strtolower($searchTerm)) !== false) {
             $showRatings[] = $rating;
         }
     }
@@ -57,7 +64,7 @@ if (!empty($_GET[GET_PARAM_SEARCH_TEXT])) {
 }
 
 function calcMeanStars(array $ratings) : float {
-    $sum = 1;
+    $sum = 0;
     foreach ($ratings as $rating) {
         $sum += $rating['stars'] / count($ratings);
     }
@@ -81,7 +88,9 @@ function calcMeanStars(array $ratings) : float {
     </head>
     <body>
         <h1>Gericht: <?php echo $meal['name']; ?></h1>
-        <p><?php echo $meal['description']; ?></p>
+        <p><?php
+            if ($_GET['show_description'] != 0) {
+                echo $meal['description'];} ?></p>
         <p>Allergene: </p>
         <ul><?php
         foreach ($meal['allergens'] as $ag) {
