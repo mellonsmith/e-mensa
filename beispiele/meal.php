@@ -7,7 +7,29 @@
 const GET_PARAM_MIN_STARS = 'search_min_stars';
 const GET_PARAM_SEARCH_TEXT = 'search_text';
 const GET_PARAM_SHOW_DESCRIPTION = 'show_description';
+const GET_PARAM_LANGUAGE = 'get_language';
 
+$de = array (
+        "Gericht" => "Gericht: ",
+        "Allergene" => "Allergene: ",
+        "Bewertungen" => "Bewertungen (Insgesamt: ",
+        "Text" => "Text",
+        "Autor" => "Autor",
+        "Sterne" => "Sterne"
+);
+$en = array (
+    "Gericht" => "meal: ",
+    "Allergene" => "allergens: ",
+    "Bewertungen" => "Ratings (overall: ",
+    "Text" => "text",
+    "Autor" => "author",
+    "Sterne" => "stars"
+);
+if ($_GET['get_language'] == "en") {
+    $language = $en;
+    } else{
+    $language = $de;
+}
 
 /**
  * List of all allergens.
@@ -76,7 +98,9 @@ function calcMeanStars(array $ratings) : float {
 <html lang="de">
     <head>
         <meta charset="UTF-8"/>
-        <title>Gericht: <?php echo $meal['name']; ?></title>
+        <title><?php
+            echo $language["Gericht"];
+            echo $meal['name']; ?></title>
         <style>
             * {
                 font-family: Arial, serif;
@@ -87,18 +111,22 @@ function calcMeanStars(array $ratings) : float {
         </style>
     </head>
     <body>
-        <h1>Gericht: <?php echo $meal['name']; ?></h1>
+        <h1><?php echo $meal['name']; ?></h1>
         <p><?php
             if ($_GET['show_description'] != 0) {
                 echo $meal['description'];} ?></p>
-        <p>Allergene: </p>
+        <p> <?php
+            echo $language["Allergene"];
+            ?> </p>
         <ul><?php
         foreach ($meal['allergens'] as $ag) {
             echo "<li>{$allergens[$ag]}</li>
                   ";
         }
             ?></ul>
-        <h1>Bewertungen (Insgesamt: <?php echo calcMeanStars($ratings); ?>)</h1>
+        <h1><?php
+            echo $language["Bewertungen"];
+            echo calcMeanStars($ratings); ?>)</h1>
         <form method="get">
             <label for="search_text">Filter:</label>
             <input id="search_text" type="text" name="search_text" value="<?php echo $_GET['search_text'] ?? '' ?>" >
@@ -108,9 +136,15 @@ function calcMeanStars(array $ratings) : float {
         <table class="rating">
             <thead>
             <tr>
-                <td>Text</td>
-                <td>Autor</td>
-                <td>Sterne</td>
+                <td><?php
+                    echo $language["Text"];
+                    ?> </td>
+                <td><?php
+                    echo $language["Autor"];
+                    ?></td>
+                <td><?php
+                    echo $language["Sterne"];
+                    ?></td>
 
             </tr>
             </thead>
