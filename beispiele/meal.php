@@ -122,7 +122,7 @@ function calcMeanStars(array $ratings) : float {
             if ($_GET['show_description'] != 0) {
                 echo $meal['description'];} ?></p>
         <p> <?php
-            echo $language["Allergene"];
+            echo $language['Allergene'];
             ?> </p>
         <ul><?php
         foreach ($meal['allergens'] as $ag) {
@@ -130,6 +130,18 @@ function calcMeanStars(array $ratings) : float {
                   ";
         }
             ?></ul>
+        <p>
+            Preis intern:
+            <?php
+            echo number_format($meal['price_intern'], 2)."€";
+            ?>
+            <br>
+            <br>
+            Preis extern:
+            <?php
+            echo number_format($meal['price_extern'], 2)."€";
+            ?>
+        </p>
         <h1><?php
             echo $language["Bewertungen"];
             echo calcMeanStars($ratings); ?>)</h1>
@@ -160,6 +172,7 @@ function calcMeanStars(array $ratings) : float {
             echo "<tr><td class='rating_text'>{$rating['text']}</td>
                       <td class='rating_text'>{$rating['author']}</td>
                       <td class='rating_stars'>{$rating['stars']}</td>
+                  
                   </tr>";
         }
         ?>
