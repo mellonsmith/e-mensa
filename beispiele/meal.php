@@ -3,7 +3,13 @@
 - Luis, Scholten, 3518159
 - Jonathan, Plum, 3524464
 -->
+
 <?php
+/**
+ * Praktikum DBWT. Autoren:
+ * Luis, Scholten, 3518159
+ * Jonathan, Plum, 3524464
+ */
 const GET_PARAM_MIN_STARS = 'search_min_stars';
 const GET_PARAM_SEARCH_TEXT = 'search_text';
 const GET_PARAM_SHOW_DESCRIPTION = 'show_description';
