@@ -9,6 +9,10 @@ const GET_PARAM_SEARCH_TEXT = 'search_text';
 const GET_PARAM_SHOW_DESCRIPTION = 'show_description';
 const GET_PARAM_LANGUAGE = 'get_language';
 
+$_GET['get_language'] = $_GET['get_language'] ?? "de";
+$_GET['show_description'] = $_GET['show_description'] ?? 1;
+
+
 $de = array (
         "Gericht" => "Gericht: ",
         "Allergene" => "Allergene: ",
@@ -25,6 +29,8 @@ $en = array (
     "Autor" => "author",
     "Sterne" => "stars"
 );
+
+
 if ($_GET['get_language'] == "en") {
     $language = $en;
     } else{
