@@ -8,9 +8,31 @@ const GET_PARAM_MIN_STARS = 'search_min_stars';
 const GET_PARAM_SEARCH_TEXT = 'search_text';
 const GET_PARAM_SHOW_DESCRIPTION = 'show_description';
 const GET_PARAM_LANGUAGE = 'get_language';
+const GET_PARAM_RATING = 'get_rating';
+
 
 $_GET['get_language'] = $_GET['get_language'] ?? "de";
 $_GET['show_description'] = $_GET['show_description'] ?? 1;
+$_GET['get_rating'] = $_GET['get_rating'] ?? '';
+
+function calcMaxStars(array $ratings) : int {
+   $maxStars = 0;
+    foreach ($ratings as $rating) {
+        if($rating['stars'] > $maxStars){
+            $maxStars = $rating['stars'];
+        }
+    }
+    return $maxStars;
+}
+function calcMinStars(array $ratings) : int {
+    $minStars = 0;
+    foreach ($ratings as $rating) {
+        if($rating['stars'] < $minStars){
+            $minStars = $rating['stars'];
+        }
+    }
+    return $minStars;
+}
 
 
 $de = array (
@@ -72,6 +94,22 @@ $ratings = [
         'stars' => 3 ]
 ];
 
+
+$maxStars = calcMaxStars($ratings);
+$minStars = calcMinStars($ratings);
+
+if($_GET('get_rating') == 'flopp'){
+    $min = array();
+    foreach ($ratings as $rating){
+        if($rating['stars'] == $minStars){
+            $min += $rating;
+        }
+    }
+    $ratings = $min;
+}
+
+
+
 $showRatings = [];
 if (!empty($_GET[GET_PARAM_SEARCH_TEXT])) {
     $searchTerm = $_GET[GET_PARAM_SEARCH_TEXT];
@@ -98,6 +136,8 @@ function calcMeanStars(array $ratings) : float {
     }
     return $sum;
 }
+
+
 
 ?>
 <!DOCTYPE html>
