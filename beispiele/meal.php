@@ -25,7 +25,7 @@ function calcMaxStars(array $ratings) : int {
     return $maxStars;
 }
 function calcMinStars(array $ratings) : int {
-    $minStars = 0;
+    $minStars = 5;
     foreach ($ratings as $rating) {
         if($rating['stars'] < $minStars){
             $minStars = $rating['stars'];
@@ -33,7 +33,6 @@ function calcMinStars(array $ratings) : int {
     }
     return $minStars;
 }
-
 
 $de = array (
         "Gericht" => "Gericht: ",
@@ -95,22 +94,12 @@ $ratings = [
 ];
 
 
-$maxStars = calcMaxStars($ratings);
-$minStars = calcMinStars($ratings);
-
-if($_GET('get_rating') == 'flopp'){
-    $min = array();
-    foreach ($ratings as $rating){
-        if($rating['stars'] == $minStars){
-            $min += $rating;
-        }
-    }
-    $ratings = $min;
-}
-
-
-
+$maxRating = calcMaxStars($ratings);
+$minRating = calcMinStars($ratings);
 $showRatings = [];
+
+
+
 if (!empty($_GET[GET_PARAM_SEARCH_TEXT])) {
     $searchTerm = $_GET[GET_PARAM_SEARCH_TEXT];
     foreach ($ratings as $rating) {
@@ -125,6 +114,18 @@ if (!empty($_GET[GET_PARAM_SEARCH_TEXT])) {
             $showRatings[] = $rating;
         }
     }
+} else if (!empty($_GET['get_rating'])) {
+    $stars = 3;
+    if($_GET['get_rating'] == 'top') {
+        $stars = calcMaxStars($ratings);
+    } elseif ($_GET['get_rating'] == 'flop'){
+        $stars = calcMinStars($ratings);
+    }
+    foreach ($ratings as $rating) {
+        if ($rating['stars'] == $stars) {
+            $showRatings[] = $rating;
+        }
+    }
 } else {
     $showRatings = $ratings;
 }
@@ -136,8 +137,6 @@ function calcMeanStars(array $ratings) : float {
     }
     return $sum;
 }
-
-
 
 ?>
 <!DOCTYPE html>
@@ -157,6 +156,9 @@ function calcMeanStars(array $ratings) : float {
         </style>
     </head>
     <body>
+    <?php
+        echo $minRating;
+    ?>
         <h1><?php echo $meal['name']; ?></h1>
         <p><?php
             if ($_GET['show_description'] != 0) {
