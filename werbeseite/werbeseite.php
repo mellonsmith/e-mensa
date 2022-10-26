@@ -92,6 +92,8 @@
     </style>
 </head>
 <body>
+<?php
+?>
     <div class="navbar">
         <div class="grid-con"  >
             <div><img class="icon" src="favicon.png" alt="E-Mensa"></div>
@@ -120,18 +122,21 @@
                 <tr>
                     <th>Gericht</th>
                     <th>Preis Intern</th>
-                    <th>Preis Luis</th>
+                    <th>Preis Extern</th>
                 </tr>
-                <tr>
-                    <td>Pommes mit Mayonaise </td>
-                    <td>2,50</td>
-                    <td>3,20 </td>
-                </tr>
-                <tr>
-                    <td>Pizza mit Brokkoli </td>
-                    <td>3,69</td>
-                    <td>4,20 </td>
-                </tr>
+                <?php
+                    include 'gerichte.php';
+                if (isset($gerichte)) {
+                    foreach ($gerichte as $gericht) {
+                        echo '<tr>';
+                        echo '<td>' . $gericht['gerichtname'] . '</td>';
+                        echo '<td>' . $gericht['preisIntern'] . '</td>';
+                        echo '<td>' . $gericht['preisExtern'] . '</td>';
+                        echo '<tr>';
+                    }
+                }
+                ?>
+
             </table><br>
             <h1 id="CZ">
                 E-Mensa in Buchstaben
