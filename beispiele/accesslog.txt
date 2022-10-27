@@ -1,0 +1,12 @@
+Webbrowser:Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:106.0) Gecko/20100101 Firefox/106.0
+IP-Adresse:127.0.0.1
+Datum und Uhrzeit:27-10-22 11:24:37
+
+Webbrowser:Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:106.0) Gecko/20100101 Firefox/106.0
+IP-Adresse:127.0.0.1
+Datum und Uhrzeit:27-10-22 11:25:01
+
+Webbrowser:Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:106.0) Gecko/20100101 Firefox/106.0
+IP-Adresse:127.0.0.1
+Datum und Uhrzeit:27-10-22 11:26:15
+
