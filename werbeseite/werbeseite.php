@@ -123,6 +123,7 @@
                     <th>Gericht</th>
                     <th>Preis Intern</th>
                     <th>Preis Extern</th>
+                    <th>Bild</th>
                 </tr>
                 <?php
                     include 'gerichte.php';
@@ -132,7 +133,7 @@
                         echo '<td>' . $gericht['gerichtname'] . '</td>';
                         echo '<td>' . $gericht['preisIntern'] . '</td>';
                         echo '<td>' . $gericht['preisExtern'] . '</td>';
-                        echo '<tr>';
+                        echo '<td><img src="'.$gericht['bild'].'" height=100px> </td>' ;
                     }
                 }
                 ?>
