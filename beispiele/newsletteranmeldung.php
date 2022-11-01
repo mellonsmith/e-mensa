@@ -10,7 +10,7 @@
     <title>Newsletter</title>
 </head>
 <body>
-<form action="beispiele/formdata.html" method="post">
+<form action="formdata.php" method="post">
     <fieldset>
         <legend>Anmeldung</legend>
         <label>Anrede</label>
@@ -23,13 +23,13 @@
         <br>
         <br>
         <label for="firstnameID"> Vorname*</label><br>
-        <input type="text" size="34" required="required" placeholder="Bitte geben Sie Ihren Vornamen ein" id="firstnameID">
+        <input name="vorname" type="text" size="34" placeholder="Bitte geben Sie Ihren Vornamen ein" id="firstnameID">
         <br>
         <label for="lastnameID"> Nachname*</label><br>
-        <input type="text" size="34" required="required" placeholder="Bitte geben Sie Ihren Nachnamen ein" id="lastnameID">
+        <input name="nachname" type="text" size="34" placeholder="Bitte geben Sie Ihren Nachnamen ein" id="lastnameID">
         <br>
         <label for="MailID"> Email*</label><br>
-        <input type="email" size="34" required="required" placeholder="Bitte geben Sie Ihre E-Mail ein" id="MailID">
+        <input name="email" type="email" size="34" placeholder="Bitte geben Sie Ihre E-Mail ein" id="MailID">
         <br>
         <br>
         <label for="MenuID"> Benachrichtigungsintervall*</label><br>
@@ -40,7 +40,7 @@
         </select>
         <br>
         <br>
-        <input type="checkbox" id="datenschutzID" required="required">
+        <input name="datenschutz" type="checkbox" id="datenschutzID">
         <label for="datenschutzID">Datenschutzhinweise gelesen?</label>
         <br>
         <br>
