@@ -16,6 +16,7 @@ $vorname = $_POST["vorname"];
 $nachname = $_POST["nachname"];
 $email = $_POST["email"];
 $datenschutz = $_POST["datenschutz"];
+$intervall = $_POST["intervall"];
 
 
 if (empty($_POST["vorname"]) || $_POST["vorname"] == " ") {
@@ -42,6 +43,12 @@ if (empty($_POST["datenschutz"])) {
    <?php echo $nachnameErr;?>
 <?php if ($vornameErr == "" && $datenschutzErr == "" && $nachnameErr == "" && $emailErr == "") {
     echo "VALIDIERT <br>";
+    $myfile = fopen("formoutput.txt", "w");
+    fwrite($myfile, "vorname,". $vorname);
+    fwrite($myfile, "nachname,". $nachname);
+    fwrite($myfile, "email,". $email);
+    fwrite($myfile, "intervall,". $intervall);
+    fclose($myfile);
 }
 ?></p>
 
