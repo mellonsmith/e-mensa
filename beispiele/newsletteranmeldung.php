@@ -1,6 +1,6 @@
 <?php
 $vornameErr = $nachnameErr = $emailErr = $datenschutzErr = "";
-$vorname = $nachname = $email = $datenschutz = $intervall = "";
+$vorname = $nachname = $email = $datenschutz = $intervall = $gender = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $vorname = $_POST["vorname"];
@@ -8,6 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $datenschutz = $_POST["datenschutz"];
     $intervall = $_POST["intervall"];
+    $gender = $_POST["GenderID"];
 
     if (empty($_POST["vorname"]) || $_POST["vorname"] == " ") {
         $vornameErr = "Vorname fehlt.";
@@ -44,10 +45,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <legend>Anmeldung</legend>
         <label>Anrede</label>
         <br>
-        <input name="genderf" type="radio" id="FrauID" name="GenderID">
+        <input <?php if($gender == "frau") echo "checked";?> value="frau" type="radio" id="FrauID" name="GenderID">
         <label for="FrauID">Frau</label>
         <br>
-        <input name="genderm" type="radio" id="MannID" name="GenderID">
+        <input <?php if($gender == "mann") echo "checked";?> value="mann" type="radio" id="MannID" name="GenderID">
         <label for="MannID">Mann</label>
         <br>
         <br>
@@ -69,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </select>
         <br>
         <br>
-        <input name="datenschutz" type="checkbox" id="datenschutzID">
+        <input <?php if($datenschutz == "on") echo "checked";?> name="datenschutz" type="checkbox" id="datenschutzID">
         <label for="datenschutzID">Datenschutzhinweise gelesen?</label>
         <br>
         <br>
@@ -86,6 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && $vornameErr == "" && $datenschutzErr == "" && $nachnameErr == "" && $emailErr == "") {
         echo "Die Anmeldung war erfolgreich. <br>";
         $myfile = fopen("formoutput.txt", "a");
+        fwrite($myfile, "anrede,". $gender.PHP_EOL);
         fwrite($myfile, "vorname,". $vorname.PHP_EOL);
         fwrite($myfile, "nachname,". $nachname.PHP_EOL);
         fwrite($myfile, "email,". $email.PHP_EOL);
