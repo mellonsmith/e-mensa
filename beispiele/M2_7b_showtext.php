@@ -14,7 +14,6 @@ if(!empty($_GET[GET_PARAM_SEARCH_TEXT])){
             $englishWord = $wordArray[1];
 
             $englishWord = trim($englishWord);;
-            //von englisch auf deutsch funktioniert nicht
             if (strtolower($englishWord) == strtolower($searchTerm)) {
                 $result = $germanWord;
 

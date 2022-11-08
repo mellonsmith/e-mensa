@@ -6,9 +6,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $vorname = $_POST["vorname"];
     $nachname = $_POST["nachname"];
     $email = $_POST["email"];
-    $datenschutz = $_POST["datenschutz"];
+    if(!empty($_POST["datenschutz"])){
+        $datenschutz = $_POST["datenschutz"];
+    }
+
     $intervall = $_POST["intervall"];
-    $gender = $_POST["GenderID"];
+    if(!empty($_POST["GenderID"])){
+        $gender = $_POST["GenderID"];
+    }
 
     if (empty($_POST["vorname"]) || $_POST["vorname"] == " ") {
         $vornameErr = "Vorname fehlt.";
