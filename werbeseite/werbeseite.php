@@ -123,22 +123,46 @@
                     <th>Gericht</th>
                     <th>Preis Intern</th>
                     <th>Preis Extern</th>
-                    <th>Bild</th>
+                    <th>Allergene</th>
                 </tr>
                 <?php
                     include 'gerichte.php';
-                if (isset($gerichte)) {
-                    foreach ($gerichte as $gericht) {
-                        echo '<tr>';
-                        echo '<td>' . $gericht['gerichtname'] . '</td>';
-                        echo '<td>' . $gericht['preisIntern'] . '</td>';
-                        echo '<td>' . $gericht['preisExtern'] . '</td>';
-                        echo '<td><img src="'.$gericht['bild'].'" height=100px> </td>' ;
+                $link = mysqli_connect(
+                    "localhost", // Host der Datenbank
+                    "root", // Benutzername zur Anmeldung
+                    "123", // Passwort zur Anmeldung
+                    "emensawerbeseite", // Auswahl der Datenbank
+                ); // Optional: Port der Datenbank,
+                // falls nicht 3306 verwendet wird
+                if (!$link) {
+                    echo "Verbindung fehlgeschlagen: ", mysqli_connect_error();
+                    exit();
+                }
+                $sql = "SELECT name, preis_intern, preis_extern, id FROM gericht ORDER BY name ASC LIMIT 5 ";
+                $result = mysqli_query($link, $sql);
+
+                while($row = mysqli_fetch_row($result)){
+                    $sql1 = "SELECT code FROM gericht_hat_allergen WHERE gericht_id = $row[3] ";
+                    $result1 = mysqli_query($link, $sql1);
+
+                    echo '<tr>';
+                    echo '<td>' . $row[0] . '</td>';
+                    echo '<td>' . $row[1] . '</td>';
+                    echo '<td>' . $row[2] . '</td>';
+                    echo '<td>';
+                    while($allergen = mysqli_fetch_row($result1)){
+                        foreach ($allergen as $alge){
+                            echo $alge . ',';
+                        }
                     }
+                    echo '</td>';
+                    echo '</tr>';
                 }
                 ?>
-
             </table><br>
+            <?php
+
+            ?>
             <h1 id="CZ">
                 E-Mensa in Buchstaben
             </h1>

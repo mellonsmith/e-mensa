@@ -13,3 +13,13 @@ CREATE TABLE if not exists gericht_hat_allergen (code char(4), gericht_id int8 n
 
 CREATE TABLE IF NOT EXISTS gericht_hat_kategorie (gericht_id int8 not null, kategorie_id int8 not null);
 
+
+
+UPDATE
+    allergen
+SET
+    name = 'Kamut'
+Where
+    code = 'a6';
+
+INSERT INTO gericht VALUE (21, 'Pommes mit Currywurst', 'Stinken nach Jonathan', '12.12.12', 0, 0, 10, 11 );
