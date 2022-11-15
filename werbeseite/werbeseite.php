@@ -131,7 +131,7 @@
                     "localhost", // Host der Datenbank
                     "root", // Benutzername zur Anmeldung
                     "123", // Passwort zur Anmeldung
-                    "emensawerbeseite", // Auswahl der Datenbank
+                    "emensawerbeseite" // Auswahl der Datenbank
                 ); // Optional: Port der Datenbank,
                 // falls nicht 3306 verwendet wird
                 if (!$link) {
@@ -140,7 +140,7 @@
                 }
                 $sql = "SELECT name, preis_intern, preis_extern, id FROM gericht ORDER BY name ASC LIMIT 5 ";
                 $result = mysqli_query($link, $sql);
-
+                $allergenArr = Array();
                 while($row = mysqli_fetch_row($result)){
                     $sql1 = "SELECT code FROM gericht_hat_allergen WHERE gericht_id = $row[3] ";
                     $result1 = mysqli_query($link, $sql1);
@@ -152,11 +152,20 @@
                     echo '<td>';
                     while($allergen = mysqli_fetch_row($result1)){
                         foreach ($allergen as $alge){
+                            array_push($allergenArr, $alge);
                             echo $alge . ',';
                         }
                     }
                     echo '</td>';
                     echo '</tr>';
+                }
+                foreach (array_unique($allergenArr) as $alge) {
+                    echo $alge . "<br>";
+                    $sql2 = "SELECT name FROM allergen WHERE code = $alge";
+                    $result2 = mysqli_query($link, $sql2);
+                    while($row = mysqli_fetch_row($result2)){
+                        echo $alge . ": " . $row[0] . "; ";
+                    }
                 }
                 ?>
             </table><br>
