@@ -158,18 +158,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <th>Allergene</th>
                 </tr>
                 <?php
-                    include 'gerichte.php';
-                $link = mysqli_connect(
-                    "localhost", // Host der Datenbank
-                    "root", // Benutzername zur Anmeldung
-                    "123", // Passwort zur Anmeldung
-                    "emensawerbeseite" // Auswahl der Datenbank
-                ); // Optional: Port der Datenbank,
-                // falls nicht 3306 verwendet wird
-                if (!$link) {
-                    echo "Verbindung fehlgeschlagen: ", mysqli_connect_error();
-                    exit();
-                }
+
                 $sql = "SELECT name, preis_intern, preis_extern, id FROM gericht ORDER BY name ASC LIMIT 5 ";
                 $result = mysqli_query($link, $sql);
                 $allergenArr = Array();
@@ -237,10 +226,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="form-grid">
                         <div>
                             <label for="firstnameID"> Vorname*</label><br>
-                            <input type="text" size="34" required="required" placeholder="Bitte gib deinen Namen ein" id="firstnameID">
+                            <input name="vorname" type="text" size="34" required="required" placeholder="Bitte gib deinen Namen ein" id="firstnameID">
                             <br><br>
                             <label for="MenuID"> Sprache*</label><br>
-                            <select id="MenuID" name="intervall">
+                            <select id="MenuID" name="language">
                                 <option value="deutsch">Deutsch</option>
                                 <option value="englisch">Englisch</option>
                                 <option value="elbisch">Elbisch</option>
@@ -249,12 +238,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         </div>
                         <div>
                             <label for="MailID"> Email*</label><br>
-                            <input type="email" size="34" required="required" placeholder="Bitte geben Sie Ihre E-Mail ein" id="MailID">
+                            <input name="email" type="email" size="34" required="required" placeholder="Bitte geben Sie Ihre E-Mail ein" id="MailID">
                             <br><br>
                             <input type="checkbox" id="datenschutzID" required="required">
                             <label for="datenschutzID">Datenschutzhinweise gelesen?</label>
                             <p2>*) Eingaben sind Pflicht</p2><br>
-                            <input class="right-button" id="submit" value="Abschicken">
+                            <input class="right-button" type="submit" id="submit" value="Abschicken">
                         </div>
                     </div>
                 </fieldset>
