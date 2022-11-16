@@ -13,7 +13,9 @@ CREATE TABLE if not exists gericht_hat_allergen (code char(4) REFERENCES allerge
 
 CREATE TABLE IF NOT EXISTS gericht_hat_kategorie (gericht_id int8 not null REFERENCES gericht(id), kategorie_id int8 not null REFERENCES kategorie(id));
 
+CREATE TABLE IF NOT EXISTS newsletteranmeldungen (vorname varchar(300) not null, email varchar(300) unique not null, language varchar(300) );
 
+CREATE TABLE IF NOT EXISTS besucher (ip varchar(300) not null);
 
 UPDATE
     allergen
@@ -29,3 +31,4 @@ SELECT * FROM gericht g LEFT JOIN gericht_hat_allergen gha ON g.id = gha.gericht
 SELECT COUNT(name) AS anzahl, name FROM kategorie k RIGHT JOIN gericht_hat_kategorie ghk on k.id = ghk.kategorie_id GROUP BY name HAVING anzahl > 2 ORDER BY COUNT(name) ASC;
 
 SELECT COUNT(code) FROM allergen
+

@@ -4,6 +4,38 @@
 - Luis, Scholten, 3518159
 - Jonathan, Plum, 3524464
 -->
+<?php
+include 'gerichte.php';
+
+$link = mysqli_connect(
+    "localhost", // Host der Datenbank
+    "root", // Benutzername zur Anmeldung
+    "123", // Passwort zur Anmeldung
+    "emensawerbeseite" // Auswahl der Datenbank
+); // Optional: Port der Datenbank,
+// falls nicht 3306 verwendet wird
+if (!$link) {
+    echo "Verbindung zur Datenbank fehlgeschlagen: ", mysqli_connect_error();
+    exit();
+}
+$ipAdr = $_SERVER['SERVER_ADDR'];
+
+$sql5 = "INSERT INTO besucher (ip) VALUES ('$ipAdr')";
+mysqli_query($link, $sql5);
+
+const POST_VORNAME = 'vorname';
+const POST_LANGUAGE = 'language';
+const POST_EMAIL = 'email';
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $vorname = $_POST[POST_VORNAME];
+    $email = $_POST[POST_EMAIL];
+    $language = $_POST[POST_LANGUAGE];
+    $sql4 = "INSERT INTO newsletteranmeldungen (vorname, email, language) VALUES ('$vorname', '$email', '$language')";
+    mysqli_query($link, $sql4);
+}
+
+
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -160,8 +192,7 @@
                     echo '</tr>';
                 }
                 foreach (array_unique($allergenArr) as $alge) {
-                    echo $alge . "<br>";
-                    $sql2 = "SELECT name FROM allergen WHERE code = $alge";
+                    $sql2 = "SELECT name FROM allergen WHERE code = '$alge'";
                     $result2 = mysqli_query($link, $sql2);
                     while($row = mysqli_fetch_row($result2)){
                         echo $alge . ": " . $row[0] . "; ";
@@ -169,23 +200,38 @@
                 }
                 ?>
             </table><br>
-            <?php
 
-            ?>
             <h1 id="CZ">
                 E-Mensa in Buchstaben
             </h1>
             <ul class="myheader">
                 <h2>
-                    <li class="Headerel">x Besuche</li>
-                    <li class="Headerel">4 Anmeldungen zum Newsletter</li>
-                    <li class="Headerel">2 Speisen</li>
+                    <li class="Headerel">
+                        <?php
+                        $sql3 = "SELECT COUNT(ip) FROM besucher";
+                        $result3 = mysqli_query($link, $sql3);
+                        $anzahlGerichte = mysqli_fetch_row($result3);
+                        echo $anzahlGerichte[0];
+                        ?>
+                            Besuche</li>
+                    <li class="Headerel"> <?php
+                        $sql3 = "SELECT COUNT(email) FROM newsletteranmeldungen";
+                        $result3 = mysqli_query($link, $sql3);
+                        $anzahlGerichte = mysqli_fetch_row($result3);
+                        echo $anzahlGerichte[0];
+                        ?>  Anmeldungen zum Newsletter</li>
+                    <li class="Headerel"><?php
+                        $sql3 = "SELECT COUNT(id) FROM gericht";
+                        $result3 = mysqli_query($link, $sql3);
+                        $anzahlGerichte = mysqli_fetch_row($result3);
+                        echo $anzahlGerichte[0];
+                        ?> Speisen</li>
                 </h2>
             </ul><br>
             <h1 id="CK">
                 Interesse geweckt? Wir informieren Sie!
             </h1>
-            <form action="beispiele/formdata.html" method="post">
+            <form  method="post" id="submit" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                 <fieldset>
                     <legend>Newsletter</legend>
                     <div class="form-grid">
