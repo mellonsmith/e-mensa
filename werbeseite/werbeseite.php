@@ -261,7 +261,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <div class="form-grid">
                         <div>
                             <label for="wunschgerichtnameID"> Welches Gericht wünschen Sie sich?</label>
-                            <input name="wunschgericht", required="required", placeholder="Bitte geben Sie ein Gericht ein.", id="wunschgerichtnameID">
+                            <input name="wunschgericht", required="required", placeholder="Bitte geben Sie ein Gericht ein", id="wunschgerichtnameID">
                             <br>
                             <input class="right-button" type="submit" id="submit1" value="Wunsch abschicken">
                         </div>
