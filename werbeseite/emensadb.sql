@@ -30,5 +30,8 @@ SELECT * FROM gericht g LEFT JOIN gericht_hat_allergen gha ON g.id = gha.gericht
 
 SELECT COUNT(name) AS anzahl, name FROM kategorie k RIGHT JOIN gericht_hat_kategorie ghk on k.id = ghk.kategorie_id GROUP BY name HAVING anzahl > 2 ORDER BY COUNT(name) ASC;
 
-SELECT COUNT(code) FROM allergen
+SELECT COUNT(code) FROM allergen;
+CREATE TABLE IF NOT EXISTS wunschgericht (id int8 primary key UNIQUE AUTO_INCREMENT, name varchar(300), beschreibung varchar(300), erstellungsdatum date not null, e_id int8 references ersteller(id));
+
+CREATE TABLE IF NOT EXISTS ersteller (id int8 primary key UNIQUE AUTO_INCREMENT, email varchar(300) unique not null , name varchar(300) default 'anonym');
 
