@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS besucher (ip varchar(300) not null);
 UPDATE
     allergen
 SET
-    name = 'Kamut'
+    name = 'Test-commit'
 Where
     code = 'a6';
 
