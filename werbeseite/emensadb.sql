@@ -75,21 +75,24 @@ ORDER BY COUNT(name) ASC;
 
 SELECT COUNT(code)
 FROM allergen;
+
+CREATE TABLE IF NOT EXISTS ersteller
+(
+    id    int AUTO_INCREMENT,
+    email varchar(300) unique not null,
+    name  varchar(300) default 'anonym',
+    primary key (id)
+);
+
 CREATE TABLE IF NOT EXISTS wunschgericht
 (
     id               int8 primary key UNIQUE AUTO_INCREMENT,
     name             varchar(300),
     beschreibung     varchar(300),
     erstellungsdatum date not null,
-    e_id             int UNIQUE,
+    e_id             int,
    FOREIGN KEY (e_id) references ersteller(id)
 );
 
-CREATE TABLE IF NOT EXISTS ersteller
-(
-    id    int UNIQUE AUTO_INCREMENT,
-    email varchar(300) unique not null,
-    name  varchar(300) default 'anonym',
-    primary key (id)
-);
+
 
