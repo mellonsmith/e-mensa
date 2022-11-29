@@ -271,7 +271,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <?php
             if($result4 != null){
                 echo "<div>ausgewähltes Wunschgericht: . $result4</div>";
-
             }
             ?>
 
