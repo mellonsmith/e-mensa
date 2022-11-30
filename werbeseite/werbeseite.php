@@ -19,7 +19,7 @@ if (!$link) {
     exit();
 }
 $ipAdr = $_SERVER['SERVER_ADDR'];
-
+$result4 = null;
 $sql5 = "INSERT INTO besucher (ip) VALUES ('$ipAdr')";
 mysqli_query($link, $sql5);
 const POST_WUNSCHGERICHT = 'wunschgericht';
@@ -27,18 +27,11 @@ const POST_VORNAME = 'vorname';
 const POST_LANGUAGE = 'language';
 const POST_EMAIL = 'email';
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if($_POST[POST_WUNSCHGERICHT] == null){
-
         $vorname = $_POST[POST_VORNAME];
         $email = $_POST[POST_EMAIL];
         $language = $_POST[POST_LANGUAGE];
         $sql4 = "INSERT INTO newsletteranmeldungen (vorname, email, language) VALUES ('$vorname', '$email', '$language')";
         mysqli_query($link, $sql4);
-    } else {
-        $wunschgericht = $_POST[POST_WUNSCHGERICHT];
-        $sql6 = "SELECT name FROM wunschgericht WHERE name = $wunschgericht";
-        $result4 = mysqli_query($link, $sql6);
-    }
 }
 
 
@@ -255,23 +248,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
             </fieldset>
         </form>
-        <form method="post" id="submit1" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-            <fieldset>
-                <legend>Wunschgericht</legend>
-                <div class="form-grid">
-                    <div>
-                        <label for="wunschgerichtnameID"> Welches Gericht wünschen Sie sich?</label>
-                        <input name="wunschgericht", required="required", placeholder="Bitte geben Sie ein Gericht ein.", id="wunschgerichtnameID">
-                        <br>
-                        <input class="right-button" type="submit" id="submit1" value="Wunsch abschicken">
-                    </div>
-                </div>
-            </fieldset>
-        </form>
+
         <?php
         if($result4 != null){
-            echo "<div>ausgewähltes Wunschgericht: . $result4</div>";
-
+            echo "<div>ausgewähltes Wunschgericht:" . $result4 . "</div>";
+        } else {
+            echo "Sie haben noch kein Wunschgericht gewählt!";
         }
         ?>
 

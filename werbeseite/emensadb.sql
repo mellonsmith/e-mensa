@@ -94,5 +94,19 @@ CREATE TABLE IF NOT EXISTS wunschgericht
    FOREIGN KEY (e_id) references ersteller(id)
 );
 
+SELECT * FROM wunschgericht ORDER BY erstellungsdatum DESC LIMIT 5;
+
+ALTER TABLE gericht_hat_kategorie
+    ADD CONSTRAINT UC_Gericht_Kategorie UNIQUE (gericht_id, kategorie_id);
+
+CREATE INDEX name_index
+    ON gericht (name);
 
 
+
+/*ALTER TABLE gericht
+    CONSTRAINT gericht_hat_allergen_ibfk_2
+        REFERENCES gericht_hat_allergen
+                (gericht_id)
+            ON DELETE CASCADE;
+*/
