@@ -2,8 +2,7 @@
 
 @section("content")
     <div>
-        <h1>Demo für {{ $name }}</h1>
-        <p>Kurze Übersicht, wie die Arbeit mit dem Router und der Blade View-Engine funktioniert.</p>
+        <h1>Der Wert von ?name lautet: {{ $name }}</h1>
     </div>
 @endsection
 

@@ -5,7 +5,11 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/../models/gericht.php');
 class HomeController
 {
     public function index(RequestData $request) {
-        return view('home', ['rd' => $request ]);
+        $gericht = db_gericht_select5();
+        return view('werbeseite', [
+            'rd' => $request,
+            'gericht' => $gericht
+            ]);
     }
     
     public function debug(RequestData $request) {
