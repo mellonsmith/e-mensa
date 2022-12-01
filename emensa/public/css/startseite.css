@@ -1,0 +1,79 @@
+.grid-con {
+    display: grid;
+    grid-template-columns: 15% auto 15% ;
+    gap: 10px;
+
+}
+.right-button {
+    float: right;
+    width: 140px;
+    height: 40px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+select {
+    width:120px;
+}
+.form-grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+}
+gap {
+    color: gray;
+    font-size: 38px;
+
+}
+.icon {
+    width: 30%;
+}
+.Headerel {
+    display: inline-block;
+    margin-inline: 4%;
+}
+.myheader {
+    text-align: center;
+}
+.trenner {
+    border-top: 2px solid dimgray;
+}
+img {
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+h1 {
+    text-align: center;
+}
+p {
+    border: 1px solid black;
+    text-align: justify;
+}
+table{
+    width: 100%;
+}
+table, td, th {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+p2 {
+    float: right;
+}
+.liste {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+h3 {
+    text-align: center;
+
+}
+.navbar {
+    overflow: hidden;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}

@@ -102,11 +102,15 @@ ALTER TABLE gericht_hat_kategorie
 CREATE INDEX name_index
     ON gericht (name);
 
+ALTER TABLE gericht_hat_allergen DROP FOREIGN KEY gericht_hat_allergen_ibfk_2;
+ALTER TABLE gericht_hat_allergen add constraint gericht_hat_allergen_ibfk_2 FOREIGN KEY(gericht_id) references gericht(id) ON DELETE CASCADE;
 
+ALTER TABLE gericht_hat_kategorie DROP FOREIGN KEY gericht_hat_kategorie_ibfk_1;
+ALTER TABLE gericht_hat_kategorie add constraint gericht_hat_kategorie_ibfk_1 FOREIGN KEY(gericht_id) references gericht(id) ON DELETE CASCADE;
 
-/*ALTER TABLE gericht
-    CONSTRAINT gericht_hat_allergen_ibfk_2
-        REFERENCES gericht_hat_allergen
-                (gericht_id)
-            ON DELETE CASCADE;
-*/
+ALTER TABLE kategorie ADD FOREIGN KEY (eltern_id) REFERENCES kategorie(id);
+
+ALTER TABLE gericht_hat_allergen DROP FOREIGN KEY gericht_hat_allergen_ibfk_1,
+ADD CONSTRAINT FOREIGN KEY index_allergen_code (code) REFERENCES allergen(code) ON UPDATE CASCADE;
+
+ALTER TABLE gericht_hat_kategorie ADD CONSTRAINT PRIMARY KEY (gericht_id,kategorie_id);
