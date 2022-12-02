@@ -20,9 +20,9 @@ if (!$link) {
 }
 $ipAdr = $_SERVER['SERVER_ADDR'];
 $result4 = null;
-$sql5 = "INSERT INTO besucher (ip) VALUES ('$ipAdr')";
+$ipAdr = mysqli_real_escape_string($link, $ipAdr);
+$sql5 = "INSERT INTO besucher (ip) VALUES ('htmlspecialchars($ipAdr)')";
 mysqli_query($link, $sql5);
-const POST_WUNSCHGERICHT = 'wunschgericht';
 const POST_VORNAME = 'vorname';
 const POST_LANGUAGE = 'language';
 const POST_EMAIL = 'email';
@@ -30,7 +30,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $vorname = $_POST[POST_VORNAME];
         $email = $_POST[POST_EMAIL];
         $language = $_POST[POST_LANGUAGE];
-        $sql4 = "INSERT INTO newsletteranmeldungen (vorname, email, language) VALUES ('$vorname', '$email', '$language')";
+        $vorname = mysqli_real_escape_string($link, $vorname);
+        $email = mysqli_real_escape_string($link, $email);
+        $language = mysqli_real_escape_string($link, $language);
+        $sql4 = "INSERT INTO newsletteranmeldungen (vorname, email, language) VALUES ('htmlspecialchars($vorname)', 'htmlspecialchars($email)', 'htmlspecialchars($language)')";
         mysqli_query($link, $sql4);
 }
 

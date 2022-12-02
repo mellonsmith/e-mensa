@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS emensawerbeseite;
+    DROP DATABASE IF EXISTS emensawerbeseite;
 CREATE DATABASE if not exists emensawerbeseite;
 
 USE emensawerbeseite;
