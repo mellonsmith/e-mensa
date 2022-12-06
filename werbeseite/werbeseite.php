@@ -192,7 +192,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
             ?>
         </table><br>
-
+        <a href="wunschgericht.php">Hier ist der Link um ein Wunschgericht einzugebenç</a>
         <h1 id="CZ">
             E-Mensa in Buchstaben
         </h1>
