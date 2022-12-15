@@ -27,7 +27,7 @@
 <br><br>
 <div class="grid-con">
 <div></div>
-<div>@yield("main")</div>
+<div><br>@yield("main")</div>
 <div></div>
 </div>
 <br><br>

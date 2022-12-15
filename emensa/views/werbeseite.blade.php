@@ -17,6 +17,7 @@
     <table>
         <tr>
             <th>Gericht</th>
+            <th>Bild</th>
             <th>Preis Intern</th>
             <th>Preis Extern</th>
         </tr>
@@ -24,6 +25,14 @@
         @foreach($gericht as $g)
             <tr>
                 <td> {{$g['name']}} </td>
+                <td>
+                    @if($g['bildname'] != "NULL")
+                        <img class="gerichtimg" src="img/gerichte/{{$g['bildname']}}">
+                    @endif
+                    @if($g['bildname'] == "NULL")
+                        <img class="gerichtimg" src="img/gerichte/00_image_missing.png">
+                    @endif
+                </td>
                 <td>  {{$g['preis_intern']}}</td>
                 <td>  {{$g['preis_extern']}} </td>
             </tr>

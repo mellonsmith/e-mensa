@@ -38,6 +38,10 @@ gap {
 .trenner {
     border-top: 2px solid dimgray;
 }
+.gerichtimg {
+    width: 20%;
+    height: 20%;
+}
 img {
     display:block;
     margin-left: auto;

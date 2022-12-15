@@ -1,4 +1,5 @@
 <?php
+
 require_once($_SERVER['DOCUMENT_ROOT'].'/../models/gericht.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/../models/benutzer.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/../public/index.php');
