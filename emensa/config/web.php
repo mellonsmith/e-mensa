@@ -13,6 +13,9 @@ return array(
     '/debug'        => 'HomeController@debug',
     '/error'        => 'DemoController@error',
     '/requestdata'   => 'DemoController@requestdata',
+    '/anmeldung_verifizieren' => 'HomeController@anmeldung_verifizieren',
+    '/anmeldung' => 'HomeController@anmeldung',
+    '/abmelden' => 'HomeController@abmelden',
 
     // Erstes Beispiel:
     '/m4_7a_queryparameter' => 'ExampleController@m4_7a_queryparameter',

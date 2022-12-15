@@ -3,6 +3,9 @@ const VERBOSITY = 0;
 const PUBLIC_DIRNAME = "public";
 const CONFIG_WEBROUTES = "/../config/web.php";
 const CONFIG_DB = "/../config/db.php";
+use Monolog\Level;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 // DEMO
 try {
@@ -88,6 +91,7 @@ class RequestData
 
 class FrontController
 {
+
 
     public static function handleRequest($url, $method = 'GET', $verbosity = 0, $configPath = CONFIG_WEBROUTES)
     {
@@ -239,6 +243,7 @@ class FrontController
         }
         return glob($path . '*Controller.php');
     }
+
 }
 
 function connectdb()
@@ -267,7 +272,11 @@ function connectdb()
 
     return $link;
 }
-
+function logger(){
+    $logger = new Logger('channel-name');
+    $logger->pushHandler(new StreamHandler(dirname(__DIR__) . '/storage/logs/app.log'));
+    return $logger;
+}
 function view($viewname, $viewargs = array())
 {
     $views = dirname(__DIR__) . '/views';

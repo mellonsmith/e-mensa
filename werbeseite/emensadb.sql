@@ -113,4 +113,26 @@ ALTER TABLE kategorie ADD FOREIGN KEY (eltern_id) REFERENCES kategorie(id);
 ALTER TABLE gericht_hat_allergen DROP FOREIGN KEY gericht_hat_allergen_ibfk_1,
 ADD CONSTRAINT FOREIGN KEY index_allergen_code (code) REFERENCES allergen(code) ON UPDATE CASCADE;
 
-ALTER TABLE gericht_hat_kategorie ADD CONSTRAINT PRIMARY KEY (gericht_id,kategorie_id);
+
+
+CREATE TABLE IF NOT EXISTS benutzer
+    (
+    id                  int8 primary key UNIQUE AUTO_INCREMENT,
+    name                varchar(200) not null,
+    email               varchar(100) not null UNIQUE,
+    passwort            varchar(200) not null,
+    admin               boolean not null default(false),
+    anzahlfehler        int not null default(0),
+    anzahlanmeldung     int not null,
+    letzteanmeldung     datetime,
+    letzterfehler       datetime
+    );
+
+ALTER TABLE gericht ADD bildname varchar(200) default(NULL);
+
+CREATE PROCEDURE neueAnmeldung (
+    IN inputID INT8
+) BEGIN
+   UPDATE benutzer SET anzahlanmeldung = anzahlanmeldung + 1 WHERE id = inputID;
+END;
+
