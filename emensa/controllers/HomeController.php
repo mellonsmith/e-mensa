@@ -17,6 +17,8 @@ class HomeController
         $gericht = db_gericht_select5();
         $logger = logger();
         $logger->info('Zugriff auf die Hauptseite');
+        if($_SESSION['kommtvon'] == NULL) $_SESSION['kommtvon'] = "Location: /";
+        $_SESSION['kommtvon'] = "Location: /";
         return view('werbeseite', [
             'rd' => $request,
             'gericht' => $gericht,
@@ -24,8 +26,21 @@ class HomeController
             ]);
 
     }
-    public function anmeldung(RequestData $request){
+    public function bewertung(RequestData $request){
+        session_start();
 
+        if($_SESSION['user'] != "nouser") {
+            return view('bewertung', [
+                'rd' => $request
+            ]);
+        } else {
+            $_SESSION['kommtvon'] = "Location: /bewertung";
+            echo $_SESSION['kommtvon'];
+            header('Location: /anmeldung'); exit();
+        }
+    }
+    public function anmeldung(RequestData $request){
+        $_SESSION['kommtvon'] = "Location: /";
         return view('anmeldung', [
             'rd' => $request,
             'error' => $this->error
@@ -64,7 +79,7 @@ class HomeController
             $logger->info('Erfolgreich angemeldet');
             db_benutzer_angemeldet($email, $id);
             $_SESSION['user'] = $data[0]['name'];
-            header('Location: /'); exit();
+            header($_SESSION['kommtvon']); exit();
         } else{
             $logger->warning('Fehlgeschlagene Anmeldung');
             db_benutzer_fehler($email);
