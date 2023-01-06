@@ -47,3 +47,20 @@ function db_benutzer_fehler($email){
     mysqli_commit($link);
     mysqli_close($link);
 }
+
+function db_benutzer_bewertung($review, $user, $stars, $gerichtid){
+    $link = connectdb();
+    mysqli_begin_transaction($link);
+
+    $sql1 = "SELECT id FROM benutzer WHERE name = '$user' ";
+    $result = mysqli_query($link, $sql1);
+
+    $userid = mysqli_fetch_all($result, MYSQLI_BOTH)[0][0];
+
+    $sql2 = "INSERT INTO bewertung (bemerkung, bewertungszeitpunkt , sterne_bewertung, hervorgehoben, gericht_id, benutzer_id) VALUES ('$review', NOW(), '$stars', '0', '$gerichtid', '$userid')";
+
+    mysqli_query($link, $sql2);
+
+    mysqli_commit($link);
+    mysqli_close($link);
+}

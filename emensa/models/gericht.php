@@ -36,6 +36,28 @@ function db_gericht_select_price() {
     return $data;
 }
 
+function db_gericht_data($id) {
+    try {
+        $link = connectdb();
+
+        $sql = "SELECT name, bildname FROM gericht WHERE id = '$id' ";
+        $result = mysqli_query($link, $sql);
+
+        $data = mysqli_fetch_all($result, MYSQLI_BOTH);
+
+        mysqli_close($link);
+    }
+    catch (Exception $ex) {
+        $data = array(
+            'id'=>'-1',
+            'error'=>true,
+            'name' => 'Datenbankfehler '.$ex->getCode(),
+            'beschreibung' => $ex->getMessage());
+    }
+    finally {
+        return $data;
+    }
+}
 
 function db_gericht_select5() {
     try {

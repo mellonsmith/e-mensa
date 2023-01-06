@@ -17,6 +17,7 @@ return array(
     '/anmeldung' => 'HomeController@anmeldung',
     '/abmelden' => 'HomeController@abmelden',
     '/bewertung' => 'HomeController@bewertung',
+    '/submitreview' => 'HomeController@submitreview',
 
     // Erstes Beispiel:
     '/m4_7a_queryparameter' => 'ExampleController@m4_7a_queryparameter',

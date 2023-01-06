@@ -20,6 +20,7 @@
             <th>Bild</th>
             <th>Preis Intern</th>
             <th>Preis Extern</th>
+            <th>Bewerten</th>
         </tr>
 
         @foreach($gericht as $g)
@@ -35,6 +36,12 @@
                 </td>
                 <td>  {{$g['preis_intern']}}</td>
                 <td>  {{$g['preis_extern']}} </td>
+                <td>
+                    <form method="get" id="submit" action="/bewertung">
+                        <input type="hidden" name="id" value="{{$g['id']}}"></input>
+                        <button style="height: 2rem; width : 6rem" class="submit">Bewerten</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
 

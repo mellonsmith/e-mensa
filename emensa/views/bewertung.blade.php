@@ -1,1 +1,31 @@
 @extends("werbeseitelayout")
+@section("main")
+    <br><br><br>
+    <dif>
+
+        <form  method="post" id="submit" action="/submitreview">
+            <fieldset>
+                <legend>Bewertung von {{$name}}: </legend>
+                <div class="form-grid">
+                    <div>
+                        <label for="reviewID"> Rezension: *</label><br>
+                        <textarea name="review" type="text" size="100%" rows="20" cols="100" required="required" placeholder="Bitte schreibe hier deine Bewertung" id="reviewID"></textarea>
+                        <input name="gericht_id" type="hidden" value="{{$gericht_id}}">
+                        <br><br>
+                        <label for="starID"> Sternebewertung: </label><br>
+                        <select id="starID" name="stars">
+                            <option value="sehr gut">Sehr gut!</option>
+                            <option value="gut">Gut</option>
+                            <option value="schlecht">Schlecht</option>
+                            <option value="sehr schlecht">Sehr schlecht!</option>
+                        </select>
+                        <input class="right-button" type="submit" id="submit" value="Abschicken">
+                    </div>
+                    <div>
+                        <img  src="img/gerichte/{{$bild}}">
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </dif>
+@endsection

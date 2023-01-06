@@ -1,5 +1,6 @@
 @extends("werbeseitelayout")
 @section("main")
+    <br>
     <form method="post" id="submit" action="/anmeldung_verifizieren">
 
         <fieldset class="form-grid">
