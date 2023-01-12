@@ -84,6 +84,44 @@ class HomeController
         header('Location: /');
         exit();
     }
+    public function bewertungen (RequestData $request){
+        session_start();
+        $data = db_benutzer_30bewertungen();
+
+        return view('bewertungen', [
+            'rd' => $request,
+            'bewertungen' => $data,
+            'admin' => $_SESSION['admin']
+        ]);
+    }
+    public function meinebewertungen (RequestData $request){
+        session_start();
+        $data = db_benutzer_meinebewertungen($_SESSION['user']);
+        $logger = logger();
+        $logger->info('Reviews from ' . $_SESSION['user']);
+        return view('meinebewertungen', [
+            'rd' => $request,
+            'bewertungen' => $data
+
+        ]);
+    }
+    public function bewertungloeschen (RequestData $request){
+        session_start();
+        $r = $request->getPostData();
+        $id = $r['id'];
+
+        db_benutzer_bewertungLoeschen($id);
+        header('Location: /meinebewertungen');
+    }
+    public function hervorheben (RequestData $request){
+        session_start();
+        $r = $request->getPostData();
+        $id = $r['id'];
+        $logger = logger();
+        $logger->info('ID: ' . $id);
+        db_benutzer_bewertungHervorheben($id);
+        header('Location: /bewertungen');
+    }
 
     public function anmeldung_verifizieren(RequestData $request)
     {

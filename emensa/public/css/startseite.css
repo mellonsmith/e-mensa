@@ -15,11 +15,22 @@
 select {
     width:120px;
 }
-.form-grid {
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 10px;
+@media only screen and (max-width: 1000px){
+    .form-grid {
+        display: grid;
+        grid-template-columns: auto;
+        gap: 10px;
+    }
 }
+@media only screen and (min-width: 1001px){
+    .form-grid {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 10px;
+    }
+}
+
+
 gap {
     color: gray;
     font-size: 38px;

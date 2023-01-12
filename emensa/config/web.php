@@ -18,6 +18,10 @@ return array(
     '/abmelden' => 'HomeController@abmelden',
     '/bewertung' => 'HomeController@bewertung',
     '/submitreview' => 'HomeController@submitreview',
+    '/bewertungen' => 'HomeController@bewertungen',
+    '/meinebewertungen' => 'HomeController@meinebewertungen',
+    '/bewertungloeschen' => 'HomeController@bewertungloeschen',
+    '/hervorheben' => 'HomeController@hervorheben',
 
     // Erstes Beispiel:
     '/m4_7a_queryparameter' => 'ExampleController@m4_7a_queryparameter',
