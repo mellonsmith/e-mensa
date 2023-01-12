@@ -22,7 +22,7 @@
                         <input class="right-button" type="submit" id="submit" value="Abschicken">
                     </div>
                     <div>
-                        <img  src="img/gerichte/{{$bild}}">
+                        <img src="img/gerichte/{{$bild}}">
                     </div>
                 </div>
             </fieldset>

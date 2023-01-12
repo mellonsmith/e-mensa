@@ -16,9 +16,11 @@ class HomeController
     {
         session_start();
         if ($_SESSION['user'] == NULL) $_SESSION['user'] = "nouser";
+
         $gericht = db_gericht_select5();
         $logger = logger();
         $logger->info('Zugriff auf die Hauptseite');
+        $logger->info('Admin: ' . $_SESSION['admin']);
         if ($_SESSION['kommtvon'] == NULL) $_SESSION['kommtvon'] = "Location: /";
         $_SESSION['kommtvon'] = "Location: /";
         return view('werbeseite', [
@@ -45,7 +47,7 @@ class HomeController
                 'rd' => $request
             ]);
         } else {
-            $_SESSION['kommtvon'] = "Location: /bewertung";
+            $_SESSION['kommtvon'] = "Location: /bewertung?id=" . $gericht_id;
             echo $_SESSION['kommtvon'];
             header('Location: /anmeldung');
             exit();
@@ -57,7 +59,7 @@ class HomeController
         session_start();
         $r = $request->getPostData();
         $gerichtid = $r['gericht_id'];
-        db_benutzer_bewertung($r['review'], $_SESSION['user'], $r['stars'], $gerichtid);
+        db_benutzer_bewertung(htmlspecialchars($r['review']), htmlspecialchars($_SESSION['user']), htmlspecialchars($r['stars']), htmlspecialchars($gerichtid));
         header('Location: /');
         return view('bewertung', [
             'rd' => $request
@@ -110,6 +112,7 @@ class HomeController
             $logger->info('Erfolgreich angemeldet');
             db_benutzer_angemeldet($email, $id);
             $_SESSION['user'] = $data[0]['name'];
+            $_SESSION['admin'] = $data[0]['admin'];
             header($_SESSION['kommtvon']);
             exit();
         } else {
