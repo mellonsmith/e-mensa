@@ -18,6 +18,7 @@ class HomeController
         if ($_SESSION['user'] == NULL) $_SESSION['user'] = "nouser";
 
         $gericht = db_gericht_select5();
+        $bewertung = db_bewertungen_index();
         $logger = logger();
         $logger->info('Zugriff auf die Hauptseite');
         $logger->info('Admin: ' . $_SESSION['admin']);
@@ -26,7 +27,8 @@ class HomeController
         return view('werbeseite', [
             'rd' => $request,
             'gericht' => $gericht,
-            'username' => $_SESSION['user']
+            'username' => $_SESSION['user'],
+            'bewertung' => $bewertung
         ]);
 
     }

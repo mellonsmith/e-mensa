@@ -3,7 +3,9 @@
     <br><br><br>
     <table>
     @foreach($bewertungen as $b)
-            <tr>
+            <tr @if($b['hervorgehoben'])
+                    style="background:#994d00"
+                @endif>
                 <td>
                     {{$b['name']}}
                 </td>

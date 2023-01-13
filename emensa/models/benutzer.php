@@ -71,7 +71,7 @@ function db_benutzer_30bewertungen(){
         $link = connectdb();
         mysqli_begin_transaction($link);
 
-        $sql = "SELECT bewertung.id, bemerkung, sterne_bewertung, g.name FROM bewertung LEFT JOIN gericht g on bewertung.gericht_id = g.id ORDER BY bewertungszeitpunkt DESC LIMIT 30";
+        $sql = "SELECT bewertung.id, bemerkung, sterne_bewertung, hervorgehoben, g.name FROM bewertung LEFT JOIN gericht g on bewertung.gericht_id = g.id ORDER BY bewertungszeitpunkt DESC LIMIT 30";
         $result = mysqli_query($link, $sql);
 
         $data = mysqli_fetch_all($result, MYSQLI_BOTH);
@@ -90,6 +90,33 @@ function db_benutzer_30bewertungen(){
         return $data;
     }
 }
+
+function db_bewertungen_index(){
+    try {
+
+        $link = connectdb();
+        mysqli_begin_transaction($link);
+
+        $sql = "SELECT bemerkung, sterne_bewertung, g.name FROM bewertung LEFT JOIN gericht g on bewertung.gericht_id = g.id WHERE hervorgehoben = 1 ORDER BY bewertungszeitpunkt DESC LIMIT 30";
+        $result = mysqli_query($link, $sql);
+
+        $data = mysqli_fetch_all($result, MYSQLI_BOTH);
+        mysqli_commit($link);
+        mysqli_close($link);
+
+    }
+    catch (Exception $ex) {
+        $data = array(
+            'id'=>'-1',
+            'error'=>true,
+            'name' => 'Datenbankfehler '.$ex->getCode(),
+            'beschreibung' => $ex->getMessage());
+    }
+    finally {
+        return $data;
+    }
+}
+
 function db_benutzer_bewertungLoeschen($id){
     $link = connectdb();
     mysqli_begin_transaction($link);
