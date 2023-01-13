@@ -44,7 +44,29 @@
                 </td>
             </tr>
         @endforeach
-
+        <br>
     </table>
+    <h1>Meinungen unserer Gäste</h1>
+    <table>
+        <tr>
+            <th>Gericht</th>
+            <th>Bewertung</th>
+            <th>Bemerkung</th>
+        </tr>
+        @foreach($bewertung as $b)
+            <tr>
+                <td>
+                    {{$b['name']}}
+                </td>
+                <td>
+                    {{$b['sterne_bewertung']}}
+                </td>
+                <td>
+                    {{$b['bemerkung']}}
+                </td>
+            </tr>
+        @endforeach
+    </table>
+
 @endsection
 

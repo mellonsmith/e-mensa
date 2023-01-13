@@ -17,6 +17,7 @@
                     <td>
                         <form method="post" action="/hervorheben">
                             <input name="id" type="hidden" value="{{$b['id']}}">
+
                             <input class="right-button" type="submit" id="submit" value="Hervorheben">
                         </form>
                     </td>
